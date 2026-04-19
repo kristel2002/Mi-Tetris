@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Tetris - Juego en Python</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .game-preview {
+            background: #1a1a2e;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .game-preview h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .tetris-grid {
+            display: inline-block;
+            background: #0f0f1a;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .row {
+            display: flex;
+        }
+        
+        .block {
+            width: 25px;
+            height: 25px;
+            margin: 1px;
+            background: #2d2d44;
+        }
+        
+        .block.active {
+            background: #00ff00;
+            box-shadow: 0 0 5px #00ff00;
+        }
+        
+        .controls {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .controls h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .control-item {
+            display: inline-block;
+            margin: 10px 20px;
+            text-align: center;
+        }
+        
+        .key {
+            background: #333;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 18px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        
+        .download-btn {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 10px;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .github-btn {
+            background: #333;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+        
+        .button-group {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 MI TETRIS</h1>
+        <div class="subtitle">Un juego clásico desarrollado en Python con Pygame</div>
+        
+        <div class="game-preview">
+            <h3>🎯 Vista previa del juego</h3>
+            <div class="tetris-grid" id="tetris-preview">
+                <!-- Animación simple de Tetris -->
+            </div>
+            <p style="color: #ccc; margin-top: 15px;">⬆️ ¡Así se ve el juego en acción! ⬆️</p>
+        </div>
+        
+        <div class="controls">
+            <h3>🎮 Controles del juego</h3>
+            <div class="control-item">
+                <div class="key">← →</div>
+                <div>Mover izquierda/derecha</div>
+            </div>
+            <div class="control-item">
+                <div class="key">↓</div>
+                <div>Caída rápida</div>
+            </div>
+            <div class="control-item">
+                <div class="key">↑</div>
+                <div>Rotar pieza</div>
+            </div>
+        </div>
+        
+        <div class="button-group">
+            <a href="proyecto_2.py" download class="download-btn">⬇️ DESCARGAR JUEGO (.py)</a>
+            <a href="https://github.com/kristel2002/Mi-Tetris" target="_blank" class="download-btn github-btn">📦 VER CÓDIGO EN GITHUB</a>
+        </div>
+        
+        <div class="code-block">
+            <strong>📝 Instalación y ejecución:</strong><br><br>
+            # Clonar el repositorio<br>
+            git clone https://github.com/kristel2002/Mi-Tetris.git<br><br>
+            # Entrar al directorio<br>
+            cd Mi-Tetris<br><br>
+            # Instalar dependencias<br>
+            pip install pygame<br><br>
+            # Ejecutar el juego<br>
+            python proyecto_2.py
+        </div>
+        
+        <div class="game-preview" style="background: #2d2d2d;">
+            <h3>🎥 ¿Cómo se juega?</h3>
+            <p style="color: #ccc; line-height: 1.6;">
+                1. Las piezas caen desde la parte superior<br>
+                2. Usa las flechas para mover y rotar<br>
+                3. Completa líneas horizontales para ganar puntos<br>
+                4. ¡El juego termina cuando las piezas llegan a la cima!
+            </p>
+        </div>
+        
+        <footer>
+            <p>🐍 Desarrollado con Python 3.11 y Pygame</p>
+            <p>⭐ ¡No olvides darle una estrella al repositorio en GitHub!</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Animación simple de Tetris para la vista previa
+        const grid = document.getElementById('tetris-preview');
+        const pieces = [
+            [[1,1,1,1]],
+            [[1,1],[1,1]],
+            [[0,1,0],[1,1,1]],
+            [[0,1,1],[1,1,0]],
+            [[1,1,0],[0,1,1]],
+            [[1,0,0],[1,1,1]],
+            [[0,0,1],[1,1,1]]
+        ];
+        
+        let currentPiece = 0;
+        let offset = 0;
+        
+        function drawPreview() {
+            grid.innerHTML = '';
+            const piece = pieces[currentPiece % pieces.length];
+            
+            for(let i = 0; i < 4; i++) {
+                const row = document.createElement('div');
+                row.className = 'row';
+                for(let j = 0; j < 4; j++) {
+                    const block = document.createElement('div');
+                    block.className = 'block';
+                    if(piece[i] && piece[i][j]) {
+                        block.classList.add('active');
+                    }
+                    row.appendChild(block);
+                }
+                grid.appendChild(row);
+            }
+        }
+        
+        function animate() {
+            currentPiece++;
+            drawPreview();
+        }
+        
+        drawPreview();
+        setInterval(animate, 1000);
+    </script>
+</body>
+</html>
